@@ -34,6 +34,11 @@ namespace SomeGame.Entities
             Companies.Add(new Company(name, index + 1));
         }
 
+        public void AttCompany(string name, int id)
+        {
+            Companies.Add(new Company(name, id));
+        }
+
         public void AddDepartment(string name, int id)
         {
             int index = Departments.Count();
