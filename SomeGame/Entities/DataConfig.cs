@@ -47,5 +47,35 @@ namespace SomeGame.Entities
 
             Departments.Add(new Department(index + 1, name, company));
         }
+
+        public void AttDepartment(string name, int id, string comName)
+        {
+            Company company = Companies.Where(x => x.Name == name).FirstOrDefault();
+
+            Departments.Add(new Department(id, name, company));
+        }
+
+        public static void Menu()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Select one action below:");
+            Console.WriteLine("------------------------");
+            Console.WriteLine("1 - Add");
+            Console.WriteLine("2 - Delete");
+            Console.WriteLine("3 - Show List");
+            Console.WriteLine("4 - Close");
+            Console.WriteLine();
+        }
+
+        public static void AddShowDeleteMenu()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Select one action below:");
+            Console.WriteLine("------------------------");
+            Console.WriteLine("1 - Company");
+            Console.WriteLine("2 - Department");
+            Console.WriteLine("3 - Employee");
+            Console.WriteLine();
+        }
     }
 }
