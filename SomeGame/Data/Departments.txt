@@ -1,1 +1,6 @@
 1-Finance-Empresa
+2-News-Varejo
+3-Admin-Empresa
+4-Game-Fabric
+5-Pilot-KLM
+6-Maneger-KLM

@@ -116,6 +116,10 @@ namespace SomeGame
                             {
                                 Console.WriteLine($"{comp.Id}-{comp.Name}");
                             }
+
+                            Console.ReadLine();
+                            num = 0;
+                            Console.Clear();
                         }
 
                         //Show Department List
@@ -136,6 +140,10 @@ namespace SomeGame
                             {
                                 Console.WriteLine($"{dep.Id}-{dep.Name}");
                             }
+
+                            Console.ReadLine();
+                            num = 0;
+                            Console.Clear();
                         }
                     }
                 }

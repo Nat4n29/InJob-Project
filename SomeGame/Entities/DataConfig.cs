@@ -50,7 +50,7 @@ namespace SomeGame.Entities
 
         public void AttDepartment(string name, int id, string comName)
         {
-            Company company = Companies.Where(x => x.Name == name).FirstOrDefault();
+            Company company = Companies.Where(x => x.Name == comName).FirstOrDefault();
 
             Departments.Add(new Department(id, name, company));
         }
