@@ -55,6 +55,24 @@ namespace SomeGame.Entities
             Departments.Add(new Department(id, name, company));
         }
 
+        public void AddEmployee(string name, double salary, int idComp, int idDep)
+        {
+            int index = Employees.Count();
+
+            Company company = Companies.Where(x => x.Id == idComp).FirstOrDefault();
+            Department department = Departments.Where(x => x.Id == idDep).FirstOrDefault();
+
+            Employees.Add(new Employee(index + 1, name, salary, department, company));
+        }
+
+        public void AttEmployee(int id, string name, double salary, string depName, string comName)
+        {
+            Company company = Companies.Where(x => x.Name == comName).FirstOrDefault();
+            Department department = Departments.Where(x => x.Name == depName).FirstOrDefault();
+
+            Employees.Add(new Employee(id, name, salary, department, company));
+        }
+
         public static void Menu()
         {
             Console.WriteLine();
