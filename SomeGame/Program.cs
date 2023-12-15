@@ -20,11 +20,11 @@ namespace SomeGame
 
                     while (!sr.EndOfStream)
                     {
-                            string[] var = sr.ReadLine().Split('-');
-                            int id = int.Parse(var[0]);
-                            string name = var[1];
+                        string[] var = sr.ReadLine().Split('-');
+                        int id = int.Parse(var[0]);
+                        string name = var[1];
 
-                            config.AttCompany(name, id);
+                        config.AttCompany(name, id);
                     }
                     sr.Close();
                 }
@@ -64,7 +64,7 @@ namespace SomeGame
                 while (num != 4)
                 {
                     //Menu
-                    if(num == 0)
+                    if (num == 0)
                     {
                         DataConfig.Menu();
 
@@ -79,7 +79,7 @@ namespace SomeGame
 
                         num = int.Parse(Console.ReadLine());
                         Console.Clear();
-                        
+
                         //Add Company
                         if (num == 1)
                         {
@@ -111,7 +111,7 @@ namespace SomeGame
                         }
 
                         //Add Employee
-                        if(num == 3)
+                        if (num == 3)
                         {
                             Console.Write("Employee name: ");
                             string name = Console.ReadLine();
@@ -133,7 +133,7 @@ namespace SomeGame
 
                             Console.WriteLine("Select a Department:");
                             Console.WriteLine("------------------------");
-                            foreach(Department department in config.Departments)
+                            foreach (Department department in config.Departments)
                             {
                                 Console.WriteLine(department.Id + "-" + department.Name);
                             }
@@ -146,12 +146,91 @@ namespace SomeGame
                             num = 0;
                         }
                     }
+
                     //Delete
-                    
-                    //2
+                    if (num == 2)
+                    {
+                        DataConfig.AddShowDeleteMenu();
+
+                        num = int.Parse(Console.ReadLine());
+                        Console.Clear();
+
+                        //Delete Company
+                        if (num == 1)
+                        {
+                            Console.WriteLine("Select a Company to delete:");
+                            Console.WriteLine("------------------------");
+                            Console.WriteLine();
+                            foreach (Company comp in config.Companies)
+                            {
+                                Console.WriteLine(comp.Id + "-" + comp.Name);
+                            }
+                            Console.WriteLine();
+
+                            int idComp = int.Parse(Console.ReadLine());
+                            Console.Clear();
+
+                            string nameComp = config.Companies.Where(x => x.Id == idComp).First().Name;
+
+                            Console.WriteLine($"Do you want to delete {nameComp}?");
+                            Console.WriteLine("1 - Yes, 2 - No");
+
+                            int result = int.Parse(Console.ReadLine());
+                            Console.Clear();
+
+                            if (result == 1)
+                            {
+                                config.DeleteCompany(idComp);
+                                num = 0;
+                            }
+                            else
+                            {
+                                num = 1;
+                            }
+                        }
+
+                        //Delete Department
+                        if (num == 2)
+                        {
+                            Console.WriteLine("Select a Department to delete:");
+                            Console.WriteLine("------------------------");
+                            Console.WriteLine();
+
+                            foreach (Department dep in config.Departments)
+                            {
+                                Console.WriteLine(dep.Id + "-" + dep.Name);
+                            }
+                            Console.WriteLine();
+
+                            int idDep = int.Parse(Console.ReadLine());
+                            Console.Clear();
+
+                            string nameDep = config.Departments.Where(x => x.Id == idDep).First().Name;
+
+                            Console.WriteLine($"Do you want to delete {nameDep}?");
+                            Console.WriteLine("1 - Yes, 2 - No");
+
+                            int result = int.Parse(Console.ReadLine());
+                            Console.Clear();
+
+                            if (result == 1)
+                            {
+                                config.DeleteDepartment(idDep);
+                                num = 0;
+                            }
+                            else
+                            {
+                                num = 1;
+                            }
+                        }
+                        else
+                        {
+                            num = 0;
+                        }
+                    }
 
                     //Show List
-                    if(num == 3)
+                    if (num == 3)
                     {
                         DataConfig.AddShowDeleteMenu();
 
@@ -162,7 +241,7 @@ namespace SomeGame
                         //Show Company List
                         if (num == 1)
                         {
-                            foreach(Company comp in config.Companies)
+                            foreach (Company comp in config.Companies)
                             {
                                 Console.WriteLine($"{comp.Id}-{comp.Name}");
                             }
@@ -173,7 +252,7 @@ namespace SomeGame
                         }
 
                         //Show Department List
-                        if( num == 2)
+                        if (num == 2)
                         {
                             Console.WriteLine("Select a Company:");
                             Console.WriteLine("------------------------");
@@ -186,7 +265,7 @@ namespace SomeGame
                             int id = int.Parse(Console.ReadLine());
                             Console.Clear();
 
-                            foreach(Department dep in config.Departments.Where(x => x.Company.Id == id))
+                            foreach (Department dep in config.Departments.Where(x => x.Company.Id == id))
                             {
                                 Console.WriteLine($"{dep.Id}-{dep.Name}");
                             }
@@ -197,7 +276,7 @@ namespace SomeGame
                         }
 
                         //Show Employee List
-                        if(num == 3)
+                        if (num == 3)
                         {
                             Console.WriteLine("Select a option:");
                             Console.WriteLine("------------------------");
@@ -211,9 +290,9 @@ namespace SomeGame
                             Console.Clear();
 
                             //All Employees
-                            if(opt == 1)
+                            if (opt == 1)
                             {
-                                foreach(Employee emp in config.Employees)
+                                foreach (Employee emp in config.Employees)
                                 {
                                     Console.WriteLine(emp.Id + "-" + emp.Name);
                                 }
@@ -223,7 +302,7 @@ namespace SomeGame
                             }
 
                             //All Employees of a Company
-                            if(opt == 2)
+                            if (opt == 2)
                             {
                                 Console.WriteLine("Select a Company:");
                                 Console.WriteLine("------------------------");
@@ -236,7 +315,7 @@ namespace SomeGame
                                 int id = int.Parse(Console.ReadLine());
                                 Console.Clear();
 
-                                foreach(Employee emp in config.Employees.Where(x => x.Company.Id == id))
+                                foreach (Employee emp in config.Employees.Where(x => x.Company.Id == id))
                                 {
                                     Console.WriteLine(emp.Id + "-" + emp.Name);
                                 }
@@ -247,7 +326,7 @@ namespace SomeGame
                             }
 
                             //All Employees of a Department
-                            if(opt == 3)
+                            if (opt == 3)
                             {
                                 Console.WriteLine("Select a Company:");
                                 Console.WriteLine("------------------------");
@@ -262,7 +341,7 @@ namespace SomeGame
 
                                 Console.WriteLine("Select a Department:");
                                 Console.WriteLine("------------------------");
-                                foreach(Department department in config.Departments.Where(x => x.Company.Id == idComp))
+                                foreach (Department department in config.Departments.Where(x => x.Company.Id == idComp))
                                 {
                                     Console.WriteLine(department.Id + "-" + department.Name);
                                 }
@@ -271,7 +350,7 @@ namespace SomeGame
                                 int idDep = int.Parse(Console.ReadLine());
                                 Console.Clear();
 
-                                foreach(Employee emp in config.Employees.Where(x => x.Company.Id == idComp && x.Department.Id == idDep))
+                                foreach (Employee emp in config.Employees.Where(x => x.Company.Id == idComp && x.Department.Id == idDep))
                                 {
                                     Console.WriteLine(emp.Id + "-" + emp.Name);
                                 }
@@ -287,7 +366,7 @@ namespace SomeGame
 
                 using (StreamWriter sw = new StreamWriter(DataConfig.PathCompany()))
                 {
-                    foreach(Company comp in config.Companies)
+                    foreach (Company comp in config.Companies)
                     {
                         sw.WriteLine($"{comp.Id}-{comp.Name}");
                     }
@@ -296,7 +375,7 @@ namespace SomeGame
 
                 using (StreamWriter sw = new StreamWriter(DataConfig.PathDepartment()))
                 {
-                    foreach(Department dep in config.Departments)
+                    foreach (Department dep in config.Departments)
                     {
                         sw.WriteLine($"{dep.Id}-{dep.Name}-{dep.Company.Name}");
                     }
@@ -305,7 +384,7 @@ namespace SomeGame
 
                 using (StreamWriter sw = new StreamWriter(DataConfig.PathEmployee()))
                 {
-                    foreach(Employee emp in config.Employees)
+                    foreach (Employee emp in config.Employees)
                     {
                         sw.WriteLine($"{emp.Id}-{emp.Name}-{emp.Salary.ToString("F2", CultureInfo.InvariantCulture)}-{emp.Department.Name}-{emp.Company.Name}");
                     }
@@ -313,7 +392,7 @@ namespace SomeGame
                 }
             }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
